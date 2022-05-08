@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import logo from "./logo.svg";
+import style from "./app.module.css";
+import { NavBar } from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import Expense from "./pages/Expense";
+import { ThemeProvider } from "@emotion/react";
+import theme from "./theme";
+import { Box } from "@mui/system";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Router>
+            <ThemeProvider theme={theme}>
+                <Box sx={{ marginBottom: "56px" }}>
+                    <Routes>
+                        <Route path='/' element={<NavBar />} />
+                        <Route path='budgets' element={<NavBar />} />
+                        <Route path='expenses' element={<Expense />} />
+                    </Routes>
+                </Box>
+                <NavBar />
+            </ThemeProvider>
+        </Router>
+    );
 }
 
 export default App;
