@@ -15,6 +15,7 @@ import CheckroomRoundedIcon from "@mui/icons-material/CheckroomRounded";
 import DiamondRoundedIcon from "@mui/icons-material/DiamondRounded";
 import QuestionMarkRoundedIcon from "@mui/icons-material/QuestionMarkRounded";
 import style from "./Expense.module.css";
+import { ClothesIcon, EventIcon, FoodIcon, LuxuryIcon, OthersIcon } from "../components/Icons";
 
 const data = [
     { debitType: "food", description: "ippudo", amount: "13" },
@@ -39,15 +40,12 @@ const data = [
     { debitType: "others", description: "sleeping pills", amount: "21" },
 ];
 
-interface Avatar {
-    [key: string]: any;
-}
-const avatar : Avatar = {
-    food: { icon: <RestaurantMenuRoundedIcon />, styles: { color: "rgb(34 197 94)", bgcolor: "rgb(220 252 231)" } },
-    event: { icon: <EventRoundedIcon />, styles: { color: "rgb(14 165 233)", bgcolor: "rgb(224 242 254)" } },
-    luxury: { icon: <DiamondRoundedIcon />, styles: { color: "rgb(139 92 246)", bgcolor: "rgb(237 233 254)" } },
-    clothes: { icon: <CheckroomRoundedIcon />, styles: { color: "rgb(99 102 241)", bgcolor: "rgb(224 231 255)" } },
-    others: { icon: <QuestionMarkRoundedIcon />, styles: { color: "rgb(245 158 11)", bgcolor: "rgb(254 243 199)" } },
+const avatar: { [key: string]: any } = {
+    food: <FoodIcon sx={{ borderRadius: "12px" }} />,
+    event: <EventIcon sx={{ borderRadius: "12px" }} />,
+    luxury: <LuxuryIcon sx={{ borderRadius: "12px" }} />,
+    clothes: <ClothesIcon sx={{ borderRadius: "12px" }} />,
+    others: <OthersIcon sx={{ borderRadius: "12px" }} />,
 };
 
 export default () => {
@@ -68,17 +66,7 @@ export default () => {
                     <>
                         <Divider variant='middle' />
                         <ListItem>
-                            <ListItemAvatar>
-                                <Avatar
-                                    variant='rounded'
-                                    sx={{
-                                        borderRadius: "12px",
-                                        ...avatar[d.debitType].styles,
-                                    }}
-                                >
-                                    {avatar[d.debitType].icon}
-                                </Avatar>
-                            </ListItemAvatar>
+                            <ListItemAvatar>{avatar[d.debitType]}</ListItemAvatar>
                             <ListItemText
                                 primary={d.debitType[0].toUpperCase() + d.debitType.slice(1)}
                                 secondary={d.description}

@@ -7,6 +7,7 @@ import Expense from "./pages/Expense";
 import { ThemeProvider } from "@emotion/react";
 import theme from "./theme";
 import { Box } from "@mui/system";
+import AddExpense from "./pages/AddExpense";
 
 function App() {
     return (
@@ -15,8 +16,9 @@ function App() {
                 <Box sx={{ marginBottom: "56px" }}>
                     <Routes>
                         <Route path='/' element={<NavBar />} />
-                        <Route path='budgets' element={<NavBar />} />
+                        <Route path='budgets' element={<AddExpense />} />
                         <Route path='expenses' element={<Expense />} />
+                        <Route path='add-expenses' element={<AddExpense />} />
                     </Routes>
                 </Box>
                 <NavBar />
